@@ -33,7 +33,7 @@ module.exports = function(grunt) {
   var failedAssertions = [];
   var logFailedAssertions = function() {
     var assertion;
-    // Print each assertion error.
+    //打印每个断言错误。
     while (assertion = failedAssertions.shift()) {
       grunt.verbose.or.error(assertion.testName);
       grunt.log.error('Message: ' + formatMessage(assertion.message));

@@ -22,7 +22,7 @@
 	<script>
 		var choose = document.getElementById('choose');
 		FileAPI.event.on(choose, 'change', function (evt){
-			var files = FileAPI.getFiles(evt); // Retrieve file list
+			var files = FileAPI.getFiles(evt); // 检索文件列表
 
 			FileAPI.filterFiles(files, function (file, info/**Object*/){
 				if( /^image/.test(file.type) ){
@@ -31,14 +31,14 @@
 				return	false;
 			}, function (files/**Array*/, rejected/**Array*/){
 				if( files.length ){
-					// Make preview 100x100
+					//生成预览 100x100
 					FileAPI.each(files, function (file){
 						FileAPI.Image(file).preview(100).get(function (err, img){
 							images.appendChild(img);
 						});
 					});
 
-					// Uploading Files
+					// 上传文件
 					FileAPI.upload({
 						url: './ctrl.php',
 						files: { images: files },
@@ -55,7 +55,7 @@
 
 <a name="FileAPI.setup"></a>
 ### Setup options
-Edit the file `crossdomain.xml` and place it to the root of the domain to which files will be uploaded.
+编辑文件`crossdomain.xml`，并将其放置到文件将被上传域的根。
 
 ```html
 	<script>
@@ -88,7 +88,7 @@ Edit the file `crossdomain.xml` and place it to the root of the domain to which 
 
 <a name="FileAPI.getFiles"></a>
 ### getFiles(input`:HTMLInputElement|Event|$.Event`)`:Array`
-Retrieve file list from `input` element or `event` object, also support `jQuery`.
+检索`input`元素或`event`对象的文件列表，还支持`jQuery`。
 
 * input — `HTMLInputElement`, `change` and `drop` event, `jQuery` collection or `jQuery.Event`
 
@@ -162,7 +162,7 @@ FileAPI.filterFiles(files, function (file/**Object*/, info/**Object*/){
 
 <a name="FileAPI.getDropFiles"></a>
 ### getDropFiles(evt`:Event|$.Event`, callback`:Function`)`:void`
-Get a list of files, including directories.
+获取文件的列表，包括目录.
 
 * evt — `drop` event
 * callback — function, takes one argument, a list of files
@@ -171,7 +171,7 @@ Get a list of files, including directories.
 FileAPI.event.on(document, 'drop', function (evt/**Event*/){
 	evt.preventDefault();
 
-	// Get a list of files
+	//获取文件列表
 	FileAPI.getDropFiles(evt, function (files/**Array*/){
 		// ...
 	});
@@ -240,7 +240,7 @@ FileAPI.addInfoReader(/^image/, function (file/**File*/, callback/**Function*/){
 
 <a name="FileAPI.readAsDataURL"></a>
 ### readAsDataURL(file`:Object`, callback`:Function`)`:void`
-Reading the contents of the specified `File` as `dataURL`.
+读取指定`File`的内容作为`数据URL`。
 
 * file — file object
 * callback — function, receives a result
@@ -262,7 +262,7 @@ FileAPI.readAsDataURL(file, function (evt/**Object*/){
 
 <a name="FileAPI.readAsBinaryString"></a>
 ### readAsBinaryString(file`:Object`, callback`:Function`)`:void`
-Reading the contents of the specified `File` as `BinaryString`.
+读取指定`File`的内容作为`BinaryString`(二进制字符串)。
 
 * file — file object
 * callback — function, receives a result
@@ -284,7 +284,7 @@ FileAPI.readAsBinaryString(file, function (evt/**Object*/){
 
 <a name="FileAPI.readAsArrayBuffer"></a>
 ### readAsArrayBuffer(file`:Object`, callback`:Function`)`:void`
-Reading the contents of the specified `File` as `ArrayBuffer`.
+读取指定`File`的内容作为`ArrayBuffer`(数组缓冲区)。
 
 * file — file object
 * callback — function, receives a result
@@ -306,7 +306,7 @@ FileAPI.readAsArrayBuffer(file, function (evt/**Object*/){
 
 <a name="FileAPI.readAsText"></a>
 ### readAsText(file`:Object`, callback`:Function`)`:void`
-Reading the contents of the specified `File` as `text`.
+读取指定`File`的内容作为`text`。
 
 * file — file object
 * callback — function, receives a result
@@ -330,7 +330,7 @@ FileAPI.readAsText(file, function (evt/**Object*/){
 ### readAsText(file`:Object`, encoding`:String`, callback`:Function`)`:void`
 读取指定的内容 `File` 如 `text`.
 
-* encoding — a string indicating the encoding to use for the returned data. By default, UTF-8.
+* 编码 - 指示的编码以用于返回的数据的字符串。 默认， UTF-8.
 
 ```js
 FileAPI.readAsText(file, "utf-8", function (evt/**Object*/){
@@ -432,18 +432,18 @@ var xhr = FileAPI.upload({
 
 <a name="options.imageTransform"></a>
 ### imageTransform`:Object`
-Rules of changes the original image on the client.
+变化的规则的客户端上的原始图像。
 
 ```js
 var xhr = FileAPI.upload({
 	url: '...',
 	files: { image: imageFiles },
-	// Changes the original image
+	//改变原始图像
 	imageTransform: {
-		// resize by max side
+		// 由Max边调整
 		maxWidth: 800,
 		maxHeight: 600,
-		// Add watermark
+		// 加水印
 		overlay: [{ x: 10, y: 10, src: '/i/watemark.png', rel: FileAPI.Image.RIGHT_BOTTOM }]
 	}
 });
@@ -453,7 +453,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.imageTransform-multi"></a>
 ### imageTransform`:Object`
-Rules of image transformation on the client, for more images.
+在客户端，为更多的图像在图像变换规则.
 
 ```js
 var xhr = FileAPI.upload({
@@ -478,7 +478,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.imageTransform-jpeg"></a>
 ### imageTransform`:Object`
-Convert all images to jpeg or png.
+转换所有图像，JPEG或PNG.
 
 ```js
 var xhr = FileAPI.upload({
@@ -494,7 +494,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.imageOriginal"></a>
 ### imageOriginal`:Boolean`
-Sent to the server the original image or not, if defined imageTransform option.
+发送到服务器原始图像与否，如果确定图像变换选项。
 
 --
 
@@ -506,7 +506,7 @@ Auto-rotate images on the basis of EXIF.
 
 <a name="options.prepare"></a>
 ### prepare`:Function`
-Prepare options upload for a particular file.
+准备上传特定文件的选项。
 
 ```js
 var xhr = FileAPI.upload({
@@ -554,7 +554,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.progress"></a>
 ### progress`:Function`
-Callback for upload progress events.
+回调上传进度的事件。
 
 ```js
 var xhr = FileAPI.upload({
@@ -570,7 +570,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.fileprogress"></a>
 ### fileprogress`:Function`
-Callback for upload file progress events.
+回调上传文件进度事件。
 
 ```js
 var xhr = FileAPI.upload({
@@ -586,7 +586,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.complete"></a>
 ### complete`:Function`
-Callback for end upload requests.
+回调结束上传请求。
 
 ```js
 var xhr = FileAPI.upload({
@@ -604,7 +604,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.filecomplete"></a>
 ### filecomplete`:Function`
-Callback for end upload requests.
+回调结束上传请求。
 
 ```js
 var xhr = FileAPI.upload({
@@ -612,7 +612,7 @@ var xhr = FileAPI.upload({
 	files: { .. }
 	filecomplete: function (err/**String*/, xhr/**Object*/, file/**Object/, options/**Object*/){
 		if( !err ){
-			// File successfully uploaded
+			// 文件上传成功
 			var result = xhr.responseText;
 		}
 	}
@@ -626,15 +626,15 @@ var xhr = FileAPI.upload({
 
 <a name="File.name"></a>
 ### name
-The name of the file referenced by the File object.
+该文件由文件对象引用的名字.
 
 <a name="File.type"></a>
 ### type
-The type (MIME type) of the file referenced by the File object.
+该文件的类型（MIME类型）由File对象引用.
 
 <a name="File.size"></a>
 ### size
-The size (in bytes) of the file referenced by the File object.
+该文件由文件对象引用的大小（字节）.
 
 
 ---
@@ -645,7 +645,7 @@ The size (in bytes) of the file referenced by the File object.
 
 <a name="FileAPI.event.on"></a>
 ### on(el`:HTMLElement`, events`:String`, handler`:Function`)`:void`
-Attach an event handler function.
+附加一个事件处理函数.
 
 * el — DOM element
 * events — one or more space-separated event types.
@@ -655,7 +655,7 @@ Attach an event handler function.
 
 <a name="FileAPI.event.off"></a>
 ### off(el`:HTMLElement`, events`:String`, handler`:Function`)`:void`
-Remove an event handler.
+删除事件处理程序.
 
 * el — DOM element
 * events — one or more space-separated event types.
@@ -665,7 +665,7 @@ Remove an event handler.
 
 <a name="FileAPI.event.one"></a>
 ### one(el`:HTMLElement`, events`:String`, handler`:Function`)`:void`
-Attach an event handler function. The handler is executed at most once.
+附加一个事件处理函数。该处理器是最多一次执行.
 
 * el — DOM element
 * events — one or more space-separated event types.
@@ -675,7 +675,7 @@ Attach an event handler function. The handler is executed at most once.
 
 <a name="FileAPI.event.dnd"></a>
 ### dnd(el`:HTMLElement`, hover`:Function`, handler`:Function`)`:void`
-Attach an drag and drop event handler function.
+附加拖放事件处理函数.
 
 * el — drop zone
 * hover — `dragenter` and `dragleave` listener
@@ -699,7 +699,7 @@ $('#dropzone').dnd(hoverFn, dropFn);
 
 <a name="FileAPI.event.dnd.off"></a>
 ### dnd.off(el`:HTMLElement`, hover`:Function`, handler`:Function`)`:void`
-Remove an drag and drop event handler function.
+删除拖放事件处理函数.
 
 * el — drop zone
 * hover — `dragenter` and `dragleave` listener
@@ -717,10 +717,10 @@ $('#dropzone').dndoff(hoverFn, dropFn);
 
 <a name="FileAPI.Image"></a>
 ## FileAPI.Image
-Class for working with images
+类处理图像
 
 ### constructor(file`:Object`)`:void`
-The constructor takes a single argument, the `File` object.
+构造函数接受一个参数，则`File`对象。
 
 * file — the `File` object
 
@@ -751,7 +751,7 @@ FileAPI.Image(imageFile)
 ```
 
 ### crop(x`:Number`, y`:Number`, width`:Number`, height`:Number`)`:FileAPI.Image`
-Crop image by x, y, width and height.
+通过X，Y，宽度和高度裁剪图像.
 
 * x — offset from the top corner
 * y — offset from the left corner
@@ -783,7 +783,7 @@ FileAPI.Image(imageFile)
 	})
 ;
 
-// Resize image on by max side.
+// 在我身边调整图像。
 FileAPI.Image(imageFile)
 	.resize(320, 240, 'max')
 	.get(function (err/**String*/, img/**HTMLElement*/){
@@ -791,7 +791,7 @@ FileAPI.Image(imageFile)
 	})
 ;
 
-// Resize image on by fixed height.
+//通过固定高度调整图像。
 FileAPI.Image(imageFile)
 	.resize(240, 'height')
 	.get(function (err/**String*/, img/**HTMLElement*/){
@@ -846,7 +846,7 @@ Apply filter function. Only `HTML5`.
 ```js
 FileAPI.Image(imageFile)
 	.filter(function (canvas/**HTMLCanvasElement*/, doneFn/**Function*/){
-		// bla-bla-lba
+		// 等等等等额头
 		doneFn();
 	})
 	.get(function (err/**String*/, img/**HTMLElement*/){
@@ -887,10 +887,10 @@ Add overlay images, eg: watermark.
 ```js
 FileAPI.Image(imageFile)
 	.overlay([
-		// Left corner.
+		// 左下角。
 		{ x: 10, y: 10, w: 100, h: 10, src: '/i/watermark.png' },
 
-		// Right bottom corner.
+		//右下角。
 		{ x: 10, y: 10, src: '/i/watermark.png', rel: FileAPI.Image.RIGHT_BOTTOM }
 	])
 	.get(function (err/**String*/, img/**HTMLElement*/){
@@ -903,7 +903,7 @@ FileAPI.Image(imageFile)
 
 <a name="FileAPI.Image.get"></a>
 ### get(fn`:Function`)`:FileAPI.Image`
-Get the final image.
+得到最终的图像。
 
 * fn — complete callback
 
@@ -911,7 +911,7 @@ Get the final image.
 
 <a name="FileAPI.Camera"></a>
 ## FileAPI.Camera
-To work with a webcam, be sure to set `FileAPI.media: true`.
+要使用一个摄像头的工作，一定要设置 `FileAPI.media: true`.
 
 
 <a name="FileAPI.Camera.publish"></a>
@@ -926,7 +926,7 @@ Publication of the camera.
 var el = document.getElementById('cam');
 FileAPI.Camera.publish(el, { width: 320, height: 240 }, function (err, cam/**FileAPI.Camera*/){
 	if( !err ){
-		// The webcam is ready, you can use it.
+		//网络摄像头是准备好了，你可以用它.
 	}
 });
 ```
@@ -969,9 +969,9 @@ Take a picture with the camera.
 var el = document.getElementById('cam');
 FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 	if( !err ){
-		var shot = cam.shot(); // take a picture
+		var shot = cam.shot(); //拍照
 
-		// create thumbnail 100x100
+		// 创建缩略图100x100
 		shot.preview(100).get(function (err, img){
 			previews.appendChild(img);
 		});
@@ -1013,7 +1013,7 @@ FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 
 <a name="FileAPI.each"></a>
 ### FileAPI.each(obj`:Object|Array`, callback`:Function`[, thisObject`:Mixed`])`:void`
-Iterate over a object or array, executing a function for each matched element.
+迭代一个对象或数组，执行功能每一个匹配元素.
 
 * obj — array or object
 * callback — a function to execute for each element.
@@ -1023,7 +1023,7 @@ Iterate over a object or array, executing a function for each matched element.
 
 <a name="FileAPI.extend"></a>
 ### FileAPI.extend(dst`:Object`, src`:Object`)`:Object`
-Merge the contents of two objects together into the first object.
+合并两个对象的内容汇集成的第一个对象.
 
 * dst — an object that will receive the new properties
 * src — an object containing additional properties to merge in.
@@ -1032,7 +1032,7 @@ Merge the contents of two objects together into the first object.
 
 <a name="FileAPI.filter"></a>
 ### FileAPI.filter(array`:Array`, callback`:Function`[, thisObject`:Mixed`)`:Object`
-Creates a new array with all elements that pass the test implemented by the provided function.
+创建与擦肩而过提供的函数实现的测试所有元素的数组.
 
 * array — original Array
 * callback — Function to test each element of the array.
@@ -1062,40 +1062,40 @@ HTML5 browser support
 
 <a name="FileAPI.support.cors"></a>
 ### FileAPI.support.cors`:Boolean`
-This cross-origin resource sharing is used to enable cross-site HTTP requests.
+这种跨源资源共享来实现跨站点的HTTP请求.
 
 <a name="FileAPI.support.dnd"></a>
 ### FileAPI.support.dnd`:Boolean`
-Drag'n'drop events support.
+拖放事件的支持.
 
 <a name="FileAPI.support.flash"></a>
 ### FileAPI.support.flash`:Boolean`
-Availability Flash plugin.
+可用性Flash插件.
 
 <a name="FileAPI.support.canvas"></a>
 ### FileAPI.support.canvas`:Boolean`
-Canvas support.
+帆布支持.
 
 <a name="FileAPI.support.dataURI"></a>
 ### FileAPI.support.dataURI`:Boolean`
-Support dataURI as src for image.
+支持数据URL作为源文件图像.
 
 <a name="FileAPI.support.chunked"></a>
 ### FileAPI.support.chunked`:Boolean`
-Support chuncked upload.
+支持分块上传.
 
 ---
 
 <a name="flash"></a>
 ## Flash
-Flash is very "buggy" thing :]
-The server response can not be empty.
-Therefore, in the event of a successful uploading `http status` should be only `200 OK`.
+Flash是很“buggy”的事情：]
+服务器响应不能为空。
+因此，在一个成功的上载的情况下的`http status`应该只有`200 OK`。
 
 <a name="flash.settings"></a>
 ### Settings
-Flash settings.
-It is advisable to place flash on the same server where the files will be uploaded.
+闪光灯设置。
+明智的做法是把闪存在同一台服务器上所在的文件将被上传.
 
 ```html
 <script>
@@ -1117,8 +1117,8 @@ It is advisable to place flash on the same server where the files will be upload
 
 <a name="crossdomain.xml"></a>
 ### crossdomain.xml
-Necessarily make this file on the server.
-Do not forget to replace `youdomain.com` on the name of your domain.
+一定能使服务器上的文件。
+不要忘记，以取代你的域名`youdomain.com`。
 
 ```xml
 <?xml version="1.0"?>
@@ -1135,7 +1135,7 @@ Do not forget to replace `youdomain.com` on the name of your domain.
 
 <a name="flash.request"></a>
 ### request
-The following sample HTTP POST request is sent from Flash Player to a server-side script if no parameters are specified:
+如果没有指定参数，下面的HTTP POST请求从Flash播放器发送到服务器端脚本:
 
 ```xml
 POST /server/ctrl.php HTTP/1.1
@@ -1247,26 +1247,26 @@ Enable CORS.
 
 <a name="server.chunked"></a>
 ### Chunked file upload
-Client and server communicate to each other using the following HTTP headers and status codes.<br/>
-Client explicitly sets the following headers:<br/>
+使用下列HTTP头和状态代码客户机和服务器进行通信，以相互.<br/>
+客户明确设置以下头:<br/>
 <ul>
 	<li>Content-Range: bytes &lt;start-offset&gt;-&lt;end-offset&gt;/&lt;total&gt;</li>
 	<li>Content-Disposition: attachment; filename=&lt;file-name&gt;</li>
 </ul>
-Any other headers are set by a target browser and are not used by client. Library does not provide any facilities to track a file uniqueness across requests, it's left on developer's consideration.<br/>
-Response codes:
+任何其他标头由目标浏览器中设置和不使用的客户端。图书馆不提供任何设施，以跟踪跨请求文件的唯一性，它留在开发商的考虑。<br/>
+响应码:
 <ul>
-	<li>200 - last chunk is uploaded</li>
-	<li>201 - chunk is successfully saved</li>
-	<li>416 - range is not acceptable error, recoverable</li>
-	<li>500 - server error, recoverable</li>
+<li>200 - 最后一块被上传</li>
+<li>201 - 块被成功保存</li>
+<li>416 - 范围是不能接受的错误，恢复</li>
+<li>500 - 服务器错误，可采</li>
 </ul>
-For recoverable errors server tries to resend chunk `chunkUploadRetry` times then fails.<br/
+对于可恢复的错误服务器尝试重新发送大块大块'chunkUploadRetry`(`上传Retry`)次，然后失败.<br/
 Response headers:
 <ul>
 	<li>X-Last-Known-Byte: int, library tries to resend chunk from the given offset. Applicable to response codes 200 and 416</li>
 </ul>
-All the other codes - fatal error, user's involvement is recommended.
+所有其他代码 - 致命错误，用户参与推荐.
 
 ---
 
@@ -1338,7 +1338,7 @@ Stylized button.
 
 <a name="buttons.examples.link"></a>
 ### Link
-Button like link.
+按钮类似于链接.
 
 ```html
 <style>

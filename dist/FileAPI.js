@@ -525,7 +525,7 @@
 
 
 			/**
-			 * For each object
+			 *为每个对象
 			 *
 			 * @param	{Object|Array}	obj
 			 * @param	{Function}		fn

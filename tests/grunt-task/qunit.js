@@ -73,7 +73,7 @@ module.exports = function(grunt) {
   });
 
   phantomjs.on('qunit.testDone', function(name, failed/*, passed, total*/) {
-    // Log errors if necessary, otherwise success.
+    // 如果需要记录错误，否则成功。
     if (failed > 0) {
       // list assertions
       if (grunt.option('verbose')) {

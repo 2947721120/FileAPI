@@ -52,18 +52,18 @@
                     // Convert base64 to raw binary data held in a string:
                     byteString = atob(dataURI.split(',')[1]);
                 } else {
-                    // Convert base64/URLEncoded data component to raw binary data:
+                    //base64转换/ URL编码数据分量原始二进制数据:
                     byteString = decodeURIComponent(dataURI.split(',')[1]);
                 }
-                // Write the bytes of the string to an ArrayBuffer:
+                // 写入字符串到ArrayBuffer(数组缓冲区)的字节：
                 arrayBuffer = new ArrayBuffer(byteString.length);
                 intArray = new Uint8Array(arrayBuffer);
                 for (i = 0; i < byteString.length; i += 1) {
                     intArray[i] = byteString.charCodeAt(i);
                 }
-                // Separate out the mime component:
+                //分离出哑剧成分:
                 mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-                // Write the ArrayBuffer (or ArrayBufferView) to a blob:
+                //写ArrayBuffer（或ArrayBuffer视图）一个blob:
                 if (hasBlobConstructor) {
                     return new Blob(
                         [hasArrayBufferViewSupport ? intArray : arrayBuffer],
@@ -120,7 +120,7 @@
 		jQuery = window.jQuery,
 
 		html5 =    !!(File && (FileReader && (window.Uint8Array || FormData || XMLHttpRequest.prototype.sendAsBinary)))
-				&& !(safari && /windows/i.test(userAgent)), // BugFix: https://github.com/mailru/FileAPI/issues/25
+				&& !(safari && /windows/i.test(userAgent)), //修正： https://github.com/mailru/FileAPI/issues/25
 
 		cors = html5 && ('withCredentials' in (new XMLHttpRequest)),
 
@@ -151,21 +151,21 @@
 			return	pow;
 		},
 
-		_elEvents = {}, // element event listeners
-		_infoReader = [], // list of file info processors
+		_elEvents = {}, //元素事件监听器
+		_infoReader = [], //文件信息处理器列表
 
 		_readerEvents = 'abort progress error load loadend',
 		_xhrPropsExport = 'status statusText readyState response responseXML responseText responseBody'.split(' '),
 
-		currentTarget = 'currentTarget', // for minimize
-		preventDefault = 'preventDefault', // and this too
+		currentTarget = 'currentTarget', // 为最大限度地减少
+		preventDefault = 'preventDefault', // 这也太
 
 		_isArray = function (ar) {
 			return	ar && ('length' in ar);
 		},
 
 		/**
-		 * Iterate over a object or array
+		 *迭代一个对象或数组
 		 */
 		_each = function (obj, fn, ctx){
 			if( obj ){
@@ -187,7 +187,7 @@
 		},
 
 		/**
-		 * Merge the contents of two or more objects together into the first object
+		 * 合并两个或多个对象的内容一起进入第一对象
 		 */
 		_extend = function (dst){
 			var args = arguments, i = 1, _ext = function (val, key){ dst[key] = val; };
@@ -198,7 +198,7 @@
 		},
 
 		/**
-		 * Add event listener
+		 *添加事件监听器
 		 */
 		_on = function (el, type, fn){
 			if( el ){
@@ -229,7 +229,7 @@
 
 
 		/**
-		 * Remove event listener
+		 * 删除事件监听器
 		 */
 		_off = function (el, type, fn){
 			if( el ){
@@ -314,7 +314,7 @@
 				, txt:	'text/plain'
 			},
 
-			// Fallback for flash
+			//后备闪存
 			accept: {
 				  'image/*': 'art bm bmp dwg dxf cbr cbz fif fpx gif ico iefs jfif jpe jpeg jpg jps jut mcf nap nif pbm pcx pgm pict pm png pnm qif qtif ras rast rf rp svf tga tif tiff xbm xbm xpm xwd'
 				, 'audio/*': 'm4a flac aac rm mpa wav wma ogg mp3 mp2 m3u mod amf dmf dsm far gdm imf it m15 med okt s3m stm sfx ult uni xm sid ac3 dts cue aif aiff wpl ape mac mpc mpp shn wv nsf spc gym adplug adx dsp adp ymf ast afc hps xs'
@@ -322,11 +322,11 @@
 			},
 
 			uploadRetry : 0,
-			networkDownRetryTimeout : 5000, // milliseconds, don't flood when network is down
+			networkDownRetryTimeout : 5000, // 毫秒，当网络出现故障不会淹没
 
 			chunkSize : 0,
 			chunkUploadRetry : 0,
-			chunkNetworkDownRetryTimeout : 2000, // milliseconds, don't flood when network is down
+			chunkNetworkDownRetryTimeout : 2000, // 毫秒，当网络出现故障不会淹没
 
 			KB: _SIZE_CONST(1),
 			MB: _SIZE_CONST(2),

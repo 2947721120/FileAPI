@@ -976,7 +976,7 @@ FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 			previews.appendChild(img);
 		});
 
-		// and/or
+		// 和/或
 		FileAPI.upload({
 			url: '...',
 			files: { cam: shot
@@ -1016,7 +1016,7 @@ FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 迭代一个对象或数组，执行功能每一个匹配元素.
 
 * obj — array or object
-* callback — a function to execute for each element.
+* callback —一个函数来执行对每个元件.
 * thisObject — object to use as `this` when executing `callback`.
 
 --
@@ -1025,8 +1025,8 @@ FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 ### FileAPI.extend(dst`:Object`, src`:Object`)`:Object`
 合并两个对象的内容汇集成的第一个对象.
 
-* dst — an object that will receive the new properties
-* src — an object containing additional properties to merge in.
+* dst — 一个对象，将获得新的属性
+* src — 包含附加属性的对象合并在.
 
 --
 
@@ -1043,15 +1043,15 @@ FileAPI.Camera.publish(el, function (err, cam/**FileAPI.Camera*/){
 <a name="support"><a/>
 ## Support
 <ul>
-	<li>Multiupload: all browsers that support HTML5 or Flash</li>
-	<li>Drag'n'Drop upload: files (HTML5) & directories (Chrome 21+)</li>
-	<li>Chunked file upload (HTML5)</li>
-	<li>Upload one file: all browsers</li>
+<li>多文件上传：支持html5或flash所有的浏览器</li>
+<li>拖放上传：文件（html5）和目录（铬21+）</li>
+<li>分块文件上传（html5）</li>
+<li>上传一个文件：所有的浏览器</li>
 	<li>
-		Working with Images: IE6+, FF 3.6+, Chrome 10+, Opera 11.1+, Safari 6+
+		使用图像: IE6+, FF 3.6+, Chrome 10+, Opera 11.1+, Safari 6+
 		<ul>
-			<li>crop, resize, preview & rotate (HTML5 or Flash)</li>
-			<li>auto orientation by exif (HTML5, if include FileAPI.exif.js or Flash)</li>
+			<li>裁剪，调整大小，预览和旋转（HTML5或Flash）</li>
+			<li>通过EXIF自动定位（HTML5，如果包括文件API.exif.js或Flash）</li>
 		</ul>
 	</li>
 </ul>
@@ -1194,15 +1194,15 @@ Submit Query
 	include './FileAPI.class.php';
 
 	if( strtoupper($_SERVER['REQUEST_METHOD']) == 'POST' ){
-		// Retrieve File List
+		// 检索文件列表
 		$files	= FileAPI::getFiles();
 
 		// ... your logic
 
-		// JSONP callback name
+		// JSONP回调名
 		$jsonp	= isset($_REQUEST['callback']) ? trim($_REQUEST['callback']) : null;
 
-		// Server response: "HTTP/1.1 200 OK"
+		//服务器响应: "HTTP/1.1 200 OK"
 		FileAPI::makeResponse(array(
 			  'status' => FileAPI::OK
 			, 'statusText' => 'OK'
@@ -1221,16 +1221,16 @@ Enable CORS.
 
 ```php
 <?php
-	// Permitted types of request
+	// 允许类型的要求
     header('Access-Control-Allow-Methods: POST, OPTIONS');
 
-    // Describe custom headers
+    // 说明自定义页眉
     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Range, Content-Disposition, Content-Type');
 
-    // A comma-separated list of domains
+    // 用逗号分隔的域名列表
     header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
 
-	// Allow cookie
+	// 允许缓存
 	header('Access-Control-Allow-Credentials: true');
 
     if( $_SERVER['REQUEST_METHOD'] == 'OPTIONS' ){
@@ -1264,7 +1264,7 @@ Enable CORS.
 对于可恢复的错误服务器尝试重新发送大块大块'chunkUploadRetry`(`上传Retry`)次，然后失败.<br/
 Response headers:
 <ul>
-	<li>X-Last-Known-Byte: int, library tries to resend chunk from the given offset. Applicable to response codes 200 and 416</li>
+	<li>的X上次已知字节：INT，库尝试从给定的偏移重新发送数据块。适用于响应代码200和416</li>
 </ul>
 所有其他代码 - 致命错误，用户参与推荐.
 
@@ -1272,7 +1272,7 @@ Response headers:
 
 
 <a name="buttons.examples"></a>
-## Buttons examples
+## 按钮的例子
 
 <a name="buttons.examples.base"></a>
 ### Base
@@ -1288,7 +1288,7 @@ Simple input[type="file"]
 
 <a name="buttons.examples.button"></a>
 ### Button
-Stylized button.
+程式化按钮.
 
 ```html
 <style>
@@ -1327,7 +1327,7 @@ Stylized button.
     }
 </style>
 <div class="js-fileapi-wrapper upload-btn">
-    <div class="upload-btn__txt">Upload files</div>
+    <div class="upload-btn__txt">上传文件</div>
     <input name="files" type="file" multiple />
 </div>
 ```
@@ -1374,7 +1374,7 @@ Stylized button.
     }
 </style>
 <a class="js-fileapi-wrapper upload-link">
-    <span class="upload-link__txt">Upload photo</span>
+    <span class="upload-link__txt">上传图片</span>
     <input name="photo" type="file" accept="image/*" />
 </a>
 ```
@@ -1382,7 +1382,7 @@ Stylized button.
 ---
 
 <a name="install" data-name="Installation"></a>
-## Installation, testing, assembling
+## 安装，测试，装配
 `npm install fileapi`<br/>
 `cd fileapi`<br/>
 `npm install`<br/>

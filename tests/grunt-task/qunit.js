@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     return String(str).split('\n').map(function(s) { return s.magenta; }).join('\n');
   };
 
-  // Keep track of failed assertions for pretty-printing.
+  //跟踪失败的断言用于美化印花.
   var failedAssertions = [];
   var logFailedAssertions = function() {
     var assertion;

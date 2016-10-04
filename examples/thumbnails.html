@@ -18,12 +18,12 @@
 	<meta name="format-detection" content="email=no" />
 	<meta name="HandheldFriendly" content="true" />
 
-	<title>FileAPI :: Thumbnails :: example</title>
+	<title>FileAPI ::缩略图如::  例</title>
 
 	<script>
-		// Settings
+		// 设置
 		var FileAPI = {
-			  debug: true // debug mode
+			  debug: true //调试模式
 			, staticPath: '../dist/'
 		};
 	</script>
@@ -85,7 +85,7 @@
 			<a href="../">&larr; index</a> |
 			<a href="./demo.html">demo</a> -
 			<a href="./userpic.html">userpic</a> -
-			<b>thumbnails</b> -
+			<b>缩略图</b> -
 			<a href="./watermark.html">watermark</a> -
 			<a href="./webcam.html">webcam</a> -
 			<a href="./caman.html">caman.js</a>
@@ -93,12 +93,12 @@
 	</div>
 
 	<div class="body">
-		<h2>Thumbnails</h2>
+		<h2>缩略图</h2>
 
 		<div style="text-align: center">
 			<div class="js-fileapi-wrapper">
 				<input id="browse" type="file" accept="image/*"/>
-				<label for="browse" class="btn">Select photo (min 480x320)</label>
+				<label for="browse" class="btn">选择照片（min 480x320）</label>
 			</div>
 
 			<div id="loading" class="loader" style="display: none; position: absolute; left: 45%; top: 30%"></div>
@@ -113,7 +113,7 @@
 			var processing = false;
 
 			if( !(FileAPI.support.html5 || FileAPI.support.flash) ){
-				alert('Ooops, your browser does not support Flash and HTML5 :[');
+				alert('哎呀，你的浏览器不支持Flash和 HTML5 :[');
 			}
 
 			function thumb(file, width, height, type){
@@ -160,9 +160,9 @@
 						thumb(file, 100, 100)(function (){
 							// 320x240
 							thumb(file, 320, 240)(function (){
-								// 480x320 by min side
+								// 480x320 最小
 								thumb(file, 480, 320, 'min')(function (){
-									// 480x320 by max side
+									// 480x320 最大
 									thumb(file, 480, 320, 'max')(function (){
 										// Original
 										thumb(file);
@@ -174,7 +174,7 @@
 						});
 					}
 					else {
-						alert('Does not fit, you need more than: '+info.width+'x'+info.height);
+						alert('不适合，你需要超过: '+info.width+'x'+info.height);
 					}
 				});
 			});

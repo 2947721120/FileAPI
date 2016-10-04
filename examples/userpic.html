@@ -25,13 +25,13 @@
 	<meta name="format-detection" content="email=no" />
 	<meta name="HandheldFriendly" content="true" />
 
-	<title>FileAPI :: UserPic :: example</title>
+	<title>FileAPI ::用户产品图::例子</title>
 
 	<script>
-		// Объект настройки
+		//设置
 		var FileAPI = {
-			debug: false, // режим отладки
-			staticPath: '../dist/' // путь до флешек
+			debug: false, // 调试模式
+			staticPath: '../dist/' // 一直到闪存驱动器
 		};
 	</script>
 	<script src="../dist/FileAPI.min.js"></script>
@@ -137,91 +137,91 @@
 
 	<script>
 		(function (){
-			// Ссылка на uploader
+			//链接上传
 			var form = document.forms.userpic;
 
-			// Ссылка на инпут, через который юзер будет выбирать файл
+			//连结输入，通过它用户将选择的文件
 			var input = form.photo;
 
-			// Ссылка на DOM-элемент, где будем отображать preview
+			// 到DOM元素，将显示预览参考
 			var preview = document.getElementById('preview');
 
-			// Параметры предварительного просмотра
+			// 选择预览
 			var previewOpts = {
 				  width:  230
 				, height: 200
 			};
 
-			// Параметры загрузки
+			//下载选项
 			var uploadOpts = {
 				  url: '/upload' // куда грузить
-				, data: {} // дополнительный POST-параметры
-				, name: 'userpic' // название POST-параметра загружаемого файла
-				, activeClassName: 'upload_active' // класс, который будем добавлять общему контейнеру при загрузке
+				, data: {} //POST-可选参数
+				, name: 'userpic' // POST-name参数下载文件
+				, activeClassName: 'upload_active' // 类加载时将加入总货柜
 			};
 
-			// Функция, которая будет срабатывать при выборе файла
+			// 当您选择一个文件，该文件会被触发功能
 			var _onSelectFile = function (evt/**Event*/){
-				// Получаем выбранный файл
+				//获得所选择的文件
 				var file = FileAPI.getFiles(evt)[0];
 
 				if( file ){
-					// Строим preview для изображений
+					//建立一个预览图像
 					_createPreview(file);
 
-					// Загружаем файл на сервер
+					//上传文件
 					_uploadFile(file);
 				}
 			};
 
-			// Функция создающая preview для изображения
+			//该函数创建图像的预览
 			var _createPreview = function (file/**File*/){
 				FileAPI.Image(file)
 					.preview(previewOpts.width, previewOpts.height)
 					.get(function (err, image){
-						// Если не было ошибок, то вставляем изображение
+						// 如果没有错误，那么插入图像
 						if( !err ){
-							// Отчищаем контейнер от текущего изображения
+							// 从当前图像清除容器
 							preview.innerHTML = '';
 
-							// Вставляем новое
+							// 插入新
 							preview.appendChild(image);
 						}
 					})
 				;
 			};
 
-			// Функция загрузки файла на сервер
+			// 文件上传功能服务器
 			var _uploadFile = function (file){
-				// Подготавливаем опции для загрузки
+				//准备下载选项
 				var opts = FileAPI.extend(uploadOpts, {
 					files: {},
 
-					// событие "начало загрузки"
+					//事件“开始加载”
 					upload: function (){
 						form.className += ' '+uploadOpts.activeClassName;
 					},
 
-					// событие "конец загрузки"
+					//事件“结束负荷”
 					complete: function (err, xhr){
 						form.className = (' '+form.className+' ').replace(' '+uploadOpts.activeClassName+' ', ' ');
 
 						if( err ){
 							alert('Увы, произошла ошибка сервера.');
 						} else {
-							// всё успешно загрузилось
+							//所有成功启动
 						}
 					}
 				});
 
-				// Добавляем файл, который будем загружать
+				//添加文件，你将上传
 				opts.files[opts.name] = file;
 
-				// Загружаем на сервер
+				//加载服务器
 				FileAPI.upload(opts);
 			};
 
-			// Подписываемся на событие "change", оно будет срабатывать при выборе файла
+			//订阅事件“改变”，它会在你选择一个文件触发
 			FileAPI.event.on(input, "change", _onSelectFile);
 		})();
 	</script>

@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 				  curly:	true	// + "Expected '{' and instead saw 'XXXX'."
 				, immed:	true
 				, latedef:	true
-				, newcap:	true	// "Tolerate uncapitalized constructors"
+				, newcap:	true	// "容忍未大写构造函数"
 				, noarg:	true
 				, sub:		true
 				, undef:	true
@@ -26,7 +26,7 @@ module.exports = function (grunt) {
 				, eqnull:	true
 
 				, node:			true
-				, expr:			true // - "Expected an assignment or function call and instead saw an expression."
+				, expr:			true // - "期待一个分配或函数调用，而不是看到一个表达式."
 				, supernew:		true // - "Missing '()' invoking a constructor."
 				, laxcomma:		true
 				, laxbreak:		true
@@ -166,7 +166,7 @@ module.exports = function (grunt) {
 		}
 	});
 
-	// These plugins provide necessary tasks.
+	//这些插件提供了必要的任务。
 	grunt.loadNpmTasks('grunt-version');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-concat');
@@ -177,11 +177,11 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-mxmlc');
 	grunt.loadNpmTasks('grunt-curl');
 
-	// Load custom QUnit task, based on grunt-contrib-qunit, but support "files" option.
+	//加载的任务，咕噜grunt-contrib-qunit, 自定义量子系统 "files" option.
 	grunt.loadTasks('./tests/grunt-task/');
 	grunt.loadTasks('./custom-tasks/');
 
-	// "npm build" runs these tasks
+	// "npm build" 运行这些任务
 	grunt.registerTask('prepare-test-files', function (){
 		if (!grunt.file.exists('tests/files/big.jpg')) {
 			grunt.task.run('curl');

@@ -260,7 +260,7 @@ module('FileAPI');
 	test('filterFiles', function (){
 		var files	= FileAPI.getFiles(uploadForm['multiple']);
 
-		// Filer files
+		// 备案文件
 		stop();
 		FileAPI.filterFiles(files, function (file, info){
 			if( /^image/.test(file.type) ){

@@ -10,9 +10,9 @@
 	<meta name="description" content="The best library to upload files. Multiupload, drag'n'drop and chunked file upload. Images: crop, resize and auto orientation by EXIF."/>
 
 	<link rel="stylesheet" href="statics/main.css"/>
-	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet" type="text/css"/>
+	<link href="http://font.c2cmalls.com/css?family=Roboto:300,400" rel="stylesheet" type="text/css"/>
 
-	<script src="//code.jquery.com/jquery-1.8.2.js"></script>
+	<script src="//cdn.c2cmalls.com/jquery/1.8.2/jquery.js"></script>
 	<script>!window.jQuery && document.write('<script src="/js/jquery.dev.js"><'+'/script>');</script>
 
 	<script src="./statics/xtpl.min.js"></script>
@@ -24,9 +24,9 @@
 			<div class="menu">
 				<div>
 					<ul x:if="ctx.lang == 'ru'">
-						<li><a href="https://github.com/mailru/FileAPI">Репозиторий на GitHub</a></li>
+						<li><a href="https://github.com/mailru/FileAPI">知识库GitHub</a></li>
 						<li><a href="http://rubaxa.github.io/jquery.fileapi/">jQuery Plugin</a></li>
-						<li><a href="./examples/demo.html">Пример #1: demo</a></li>
+						<li><a href="./examples/demo.html">例子 #1: demo</a></li>
 						<li><a href="./examples/userpic.html">Пример #2: userpic</a></li>
 						<li><a href="./examples/thumbnails.html">Пример #3: thumbnails</a></li>
 						<li><a href="./examples/watermark.html">Пример #4: watermark</a></li>
@@ -35,7 +35,19 @@
 						<li><a href="#en/{{ctx.relpath}}">English version</a></li>
 					</ul>
 				</div>
-
+		<div>
+					<ul x:if="ctx.lang != 'zh_cn'">
+						<li><a href="https://github.com/mailru/FileAPI">GitHub 知识库</a></li>
+						<li><a href="http://rubaxa.github.io/jquery.fileapi/">jQuery 插件</a></li>
+						<li><a href="./examples/demo.html">实例 #1: demo</a></li>
+						<li><a href="./examples/userpic.html">实例 #2: userpic</a></li>
+						<li><a href="./examples/thumbnails.html">实例 #3: 缩略图</a></li>
+						<li><a href="./examples/watermark.html">实例 #4: 水印</a></li>
+						<li><a href="./examples/webcam.html">实例 #5: webcam</a></li>
+						<li><a href="./examples/caman.html">实例 #6: CamanJS</a></li>
+						<li><a href="#zh_cn/{{ctx.relpath}}">Русская версия</a></li>
+					</ul>
+				</div>
 				<div>
 					<ul x:if="ctx.lang != 'ru'">
 						<li><a href="https://github.com/mailru/FileAPI">GitHub repository</a></li>

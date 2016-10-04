@@ -1,11 +1,11 @@
-﻿<a name="FileAPI"></a>
+<a name="FileAPI"></a>
 ## FileAPI <img src="https://api.travis-ci.org/mailru/FileAPI.png?branch=master"/>
-A set of JavaScript tools for working with files.
+一套文件的JavaScript工具.
 
 <a name="started"></a>
-### Get started
+### 开始
 
-Download the files from the [dist](https://github.com/mailru/FileAPI/tree/master/dist) directory, and then:
+从中下载文件 [dist](https://github.com/mailru/FileAPI/tree/master/dist) directory, and then:
 
 ```html
 	<div>
@@ -60,10 +60,10 @@ Edit the file `crossdomain.xml` and place it to the root of the domain to which 
 ```html
 	<script>
 		window.FileAPI = {
-			  debug: false   // debug mode, see Console
-			, cors: false    // if used CORS, set `true`
-			, media: false   // if used WebCam, set `true`
-			, staticPath: '/js/FileAPI/dist/' // path to '*.swf'
+			  debug: false   // 调试模式，见控制台
+			, cors: false    // 如果使用CORS，集 `true`
+			, media: false   // 如果使用的摄像头，设置 `true`
+			, staticPath: '/js/FileAPI/dist/' // 路径 '*.swf'
 			, postNameConcat: function (name, idx){
 				// Default: object[foo]=1&object[bar][baz]=2
 				// .NET: https://github.com/mailru/FileAPI/issues/121#issuecomment-24590395
@@ -95,10 +95,10 @@ Retrieve file list from `input` element or `event` object, also support `jQuery`
 ```js
 var el = document.getElement('my-input');
 FileAPI.event.on(el, 'change', function (evt/**Event*/){
-	// Retrieve file list
+	//获取文件列表
 	var files = FileAPI.getFiles(el);
 
-	// or event
+	// 或事件
 	var files = FileAPI.getFiles(evt);
 });
 ```
@@ -114,14 +114,14 @@ Get info of file (see also: FileAPI.addInfoReader).
 * callback — function, called after collected info of file
 
 ```js
-// Get info of image file (FileAPI.exif.js included)
+// 得到图像文件信息（fileapi.exif.js在内）
 FileAPI.getInfo(file, function (err/**String*/, info/**Object*/){
 	if( !err ){
 		console.log(info); // { width: 800, height: 600, exif: {..} }
 	}
 });
 
-// Get info of mp3 file (FileAPI.id3.js included)
+// 获取MP3文件信息（fileapi.id3.js在内）
 FileAPI.getInfo(file, function (err/**String*/, info/**Object*/){
 	if( !err ){
 		console.log(info); // { title: "...", album: "...", artists: "...", ... }
@@ -133,18 +133,18 @@ FileAPI.getInfo(file, function (err/**String*/, info/**Object*/){
 
 <a name="FileAPI.filterFiles"></a>
 ### filterFiles(files`:Array`, filter`:Function`, callback`:Function`)`:void`
-Filtering the list of files, with additional information about files.
-See also: FileAPI.getInfo and FileAPI.addInfoReader.
+过滤的文件列表，以及有关文件的其他信息。
+另请参见：文件API.get信息和文件API.add信息阅读器.
 
-* files — original list of files
-* filter — function, takes two arguments: `file` — the file itself, `info` — additional information.
-* callback — function: `list` — files that match the condition, `other` — all the rest.
+* files — 原始文件列表
+* filter — function, takes two arguments: `file` — the file itself, `info` — 附加信息.
+* callback — function: `list` — files that match the condition, `other` — 所有的休息.
 
 ```js
-// Get list of file
+// 获取文件列表
 var files = FileAPI.getFiles(input);
 
-// Filter the List
+// 过滤列表
 FileAPI.filterFiles(files, function (file/**Object*/, info/**Object*/){
 	if( /^image/.test(file.type) && info ){
 		return	info.width > 320 && info.height > 240;
@@ -182,9 +182,9 @@ FileAPI.event.on(document, 'drop', function (evt/**Event*/){
 
 <a name="FileAPI.upload"></a>
 ### upload(opts`:Object`)`:XmlHttpRequest`
-Uploading files to the server (successively). Returns XHR-like object.
-It is important to remember to correctly worked flash-transport server response body must not be empty,
-for example, you can pass, just text "ok".
+上传文件到服务器（先后）。返回XHR状物品。
+要记住工作正常闪存传输服务器响应体不能为空是很重要的，
+例如，你可以传递，只是文本 "ok".
 
 * opts — options object, see [Upload options](#options)
 
@@ -209,8 +209,8 @@ FileAPI.event.on(el, 'change', function (evt/**Event*/){
 
 <a name="FileAPI.addInfoReader"></a>
 ### addInfoReader(mime`:RegExp`, handler`:Function`)`:void`
-Adds a handler for the collection of information about a file.
-See also: FileAPI.getInfo and FileAPI.filterFiles.
+增加对有关文件的信息的收集处理程序。
+另请参见：文件API.getInfo和文件API.filter文件.
 
 * mime — pattern of mime-type
 * handler — takes two arguments: `file` object and `complete` function callback
@@ -328,7 +328,7 @@ FileAPI.readAsText(file, function (evt/**Object*/){
 
 <a name="FileAPI.readAsText-encoding"></a>
 ### readAsText(file`:Object`, encoding`:String`, callback`:Function`)`:void`
-Reading the contents of the specified `File` as `text`.
+读取指定的内容 `File` 如 `text`.
 
 * encoding — a string indicating the encoding to use for the returned data. By default, UTF-8.
 
@@ -349,17 +349,17 @@ FileAPI.readAsText(file, "utf-8", function (evt/**Object*/){
 
 
 <a name="options" data-name="Upload options"></a>
-## Upload options
+## 上传选项
 
 <a name="options.url"></a>
 ### url`:String`
-A string containing the URL to which the request is sent.
+要将请求发送一个包含URL字符串.
 
 ---
 
 <a name="options.data"></a>
 ### data`:Object`
-Additional post data to be sent along with the file uploads.
+要随着文件上传发送附加后的数据.
 
 ```js
 var xhr = FileAPI.upload({
@@ -373,7 +373,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.headers"></a>
 ### headers`:Object`
-Additional request headers, HTML5 only.
+其他请求头中，只有HTML5.
 
 ```js
 var xhr = FileAPI.upload({
@@ -403,7 +403,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.chunkSize"></a>
 ### chunkSize`:Number`
-Chunk size in bytes, HTML5 only.
+以字节为单位的块大小，只有HTML5.
 
 ```js
 var xhr = FileAPI.upload({
@@ -417,7 +417,7 @@ var xhr = FileAPI.upload({
 
 <a name="options.chunkUploadRetry"></a>
 ### chunkUploadRetry`:Number`
-Number of retries during upload chunks, HTML5 only.
+重试期间上传块数，只有HTML5.
 
 ```js
 var xhr = FileAPI.upload({
